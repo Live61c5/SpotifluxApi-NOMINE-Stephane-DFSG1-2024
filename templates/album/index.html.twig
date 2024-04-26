@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Album index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-3">Album index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Year</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for album in albums %}
+            <tr>
+                <td>{{ album.id }}</td>
+                <td>{{ album.name }}</td>
+                <td>{{ album.year }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_album_show', {'id': album.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_album_edit', {'id': album.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-success" href="{{ path('app_album_new') }}">Create new</a>
+
+    <div class="row mt-3">
+        <div class="col-6"><a class="btn btn-primary" href="{{ path('app_artist_index') }}">Voir les artistes</a></div>
+        <div class="col-6"><a class="btn btn-primary" href="{{ path('app_track_index') }}">Voir les tracks</a></div>
+    </div>
+{% endblock %}

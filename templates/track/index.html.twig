@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Track index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-3">Track index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Duration</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for track in tracks %}
+            <tr>
+                <td>{{ track.id }}</td>
+                <td>{{ track.title }}</td>
+                <td>{{ track.duration }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_track_show', {'id': track.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_track_edit', {'id': track.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-success" href="{{ path('app_track_new') }}">Create new</a>   
+
+    <div class="row mt-3">
+        <div class="col-6"><a class="btn btn-primary" href="{{ path('app_album_index') }}">Voir les albums</a></div>
+        <div class="col-6"><a class="btn btn-primary" href="{{ path('app_artist_index') }}">Voir les artistes</a></div>
+    </div>
+{% endblock %}
